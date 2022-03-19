@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         setupMap()
 
     }
+    //MARK: - SETUP Map & Marker initial view. 
     func setupMap() {
         let camera = GMSCameraPosition.camera(withLatitude: 53.5499242, longitude: 9.9839786, zoom: 15.0)
         let mapView = GMSMapView.map(withFrame: view.frame, camera: camera)
