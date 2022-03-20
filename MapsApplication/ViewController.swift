@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
 class ViewController: UIViewController {
 
@@ -14,6 +15,7 @@ class ViewController: UIViewController {
     private var camera = GMSCameraPosition()
     private var mapView = GMSMapView()
     private var marker = GMSMarker()
+    private var placesClient = GMSPlacesClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,7 @@ class ViewController: UIViewController {
         
         setupMap()
         setupLongPressor()
+        setupPlaces()
         
 
     }
@@ -48,7 +51,30 @@ class ViewController: UIViewController {
         longPressRecognizer.minimumPressDuration = 0.5
         view.addGestureRecognizer(longPressRecognizer)
     }
+    
+    //MARK: - Setup Places
+    private func setupPlaces() {
+        placesClient = GMSPlacesClient.shared()
 
+    }
+    private func getPlace(from placeID: String) {
+        let placeFields: GMSPlaceField = [.name, .formattedAddress]
+        placesClient.fetchPlace(fromPlaceID: placeID, placeFields: placeFields, sessionToken: nil)  { (place, error) in
+            guard error == nil else {
+                print("Current place error: \(error?.localizedDescription ?? "")")
+                return
+            }
+
+            guard let place = place else {
+                print("No current place")
+                return
+            }
+            
+            
+            print(place.name)
+            print(place.formattedAddress)
+        }
+    }
 
 }
 
@@ -62,10 +88,13 @@ extension ViewController: HomeViewModelProtocol {
 
 //MARK: - Change Map Location & Marker
 extension ViewController: GMSMapViewDelegate {
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
-        camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 15.0)
-        marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-
+    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
+        
+        getPlace(from: placeID)
+        camera = GMSCameraPosition.camera(withLatitude: location.latitude, longitude: location.longitude, zoom: 15.0)
+        marker.position = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        
+        print("You tapped at \(location.latitude), \(location.longitude), \(placeID)")
     }
+    
 }
