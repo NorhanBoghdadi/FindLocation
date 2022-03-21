@@ -17,7 +17,6 @@
 		51EA074727E6019700404E2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51EA074527E6019700404E2A /* LaunchScreen.storyboard */; };
 		51EA075227E6019700404E2A /* MapsApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA075127E6019700404E2A /* MapsApplicationTests.swift */; };
 		51EA075D27E6019700404E2A /* MapsApplicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA075C27E6019700404E2A /* MapsApplicationUITests.swift */; };
-		51EA079C27E6464E00404E2A /* LocationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA079B27E6464E00404E2A /* LocationDetailsView.swift */; };
 		8E07F3F71BBFFBA39A49F287 /* Pods_MapsApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DC244614825DE33224E98A0 /* Pods_MapsApplication.framework */; };
 		DC00E885CF20BCD33D2D4483 /* Pods_MapsApplication_MapsApplicationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C665C391E27303BA606886E /* Pods_MapsApplication_MapsApplicationUITests.framework */; };
 /* End PBXBuildFile section */
@@ -56,7 +55,6 @@
 		51EA075827E6019700404E2A /* MapsApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapsApplicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		51EA075C27E6019700404E2A /* MapsApplicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsApplicationUITests.swift; sourceTree = "<group>"; };
 		51EA075E27E6019700404E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		51EA079B27E6464E00404E2A /* LocationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsView.swift; sourceTree = "<group>"; };
 		53EEA1DB62A60BF4D2CA0CD9 /* Pods-MapsApplicationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapsApplicationTests.release.xcconfig"; path = "Target Support Files/Pods-MapsApplicationTests/Pods-MapsApplicationTests.release.xcconfig"; sourceTree = "<group>"; };
 		5C665C391E27303BA606886E /* Pods_MapsApplication_MapsApplicationUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapsApplication_MapsApplicationUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		646151BE11768B02DBD31219 /* Pods-MapsApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapsApplication.release.xcconfig"; path = "Target Support Files/Pods-MapsApplication/Pods-MapsApplication.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 			children = (
 				51EA077027E6020C00404E2A /* AppStarter */,
 				51EA073E27E6019500404E2A /* ViewController.swift */,
-				51EA079B27E6464E00404E2A /* LocationDetailsView.swift */,
 				512010B427E8A588008A47AA /* LocationDetailsViewController.swift */,
 				51DFC31E27E74B8F0035C6B3 /* HomeViewModelProtocol.swift */,
 			);
@@ -423,7 +420,6 @@
 				51DFC31F27E74B8F0035C6B3 /* HomeViewModelProtocol.swift in Sources */,
 				51EA073F27E6019500404E2A /* ViewController.swift in Sources */,
 				51EA073B27E6019500404E2A /* AppDelegate.swift in Sources */,
-				51EA079C27E6464E00404E2A /* LocationDetailsView.swift in Sources */,
 				51EA073D27E6019500404E2A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
