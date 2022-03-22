@@ -23,7 +23,7 @@ class LocationDetailsViewController: UIViewController {
     }()
     
     //Declare first label
-    private lazy var locationNameLabel: UILabel = {
+    lazy var locationNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
@@ -35,7 +35,7 @@ class LocationDetailsViewController: UIViewController {
     }()
     
     //Declare details label
-    private lazy var addressLabel: UILabel = {
+    lazy var addressLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
