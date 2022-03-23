@@ -18,8 +18,16 @@ class HomeViewModel: HomeViewModelProtocol {
    
     //MARK: - Setup Places
     var placesClient = GMSPlacesClient.shared()
-    var placeName: String = " "
-    var placeAddress: String = " "
+    var placeName: String = " " {
+        didSet {
+            
+        }
+    }
+    var placeAddress: String = " " {
+        didSet {
+            
+        }
+    }
 
 
     func getPlace(from placeID: String) -> (String, String) {
