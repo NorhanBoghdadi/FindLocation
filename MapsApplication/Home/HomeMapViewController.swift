@@ -7,7 +7,6 @@
 
 import UIKit
 import GoogleMaps
-import GooglePlaces
 
 class HomeMapViewController: UIViewController {
 
@@ -31,12 +30,12 @@ class HomeMapViewController: UIViewController {
     }
     
     //MARK: - Setup Details View
-    private func setupDetailsView(addressName: String, addressDet: String) {
+    private func setupDetailsView(addressName: String, addressDetails: String) {
         let detailsView = LocationDetailsViewController()
         detailsView.modalPresentationStyle = .overCurrentContext
         detailsView.modalTransitionStyle = .crossDissolve
         detailsView.locationNameLabel.text = addressName
-        detailsView.addressLabel.text = addressDet
+        detailsView.addressLabel.text = addressDetails
         present(detailsView, animated: true)
     }
     
@@ -61,7 +60,7 @@ extension HomeMapViewController: GMSMapViewDelegate {
         placeOutput = viewModel.getPlace(from: placeID)
         
         viewModel.changeMapLlocation(location: location, zoom: Constants.cameraZoom)
-        setupDetailsView(addressName: placeOutput.0, addressDet: placeOutput.1)
+        setupDetailsView(addressName: placeOutput.0, addressDetails: placeOutput.1)
 
         
     }
@@ -69,11 +68,8 @@ extension HomeMapViewController: GMSMapViewDelegate {
 }
 extension HomeMapViewController {
     struct Constants {
-        static let initLatitude = 53.5499242
-        static let initLongitude = 9.9839786
         static let location = CLLocationCoordinate2D(latitude: 53.5499242, longitude: 9.9839786)
         static let cameraZoom: Float = 15.0
-        
         static let viewX: CGFloat = 20
         static let viewY: CGFloat = 120
         static let width: CGFloat = 40
