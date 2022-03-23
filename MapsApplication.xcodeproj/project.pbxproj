@@ -12,7 +12,7 @@
 		51DFC31F27E74B8F0035C6B3 /* HomeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DFC31E27E74B8F0035C6B3 /* HomeViewModelProtocol.swift */; };
 		51EA073B27E6019500404E2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA073A27E6019500404E2A /* AppDelegate.swift */; };
 		51EA073D27E6019500404E2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA073C27E6019500404E2A /* SceneDelegate.swift */; };
-		51EA073F27E6019500404E2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA073E27E6019500404E2A /* ViewController.swift */; };
+		51EA073F27E6019500404E2A /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA073E27E6019500404E2A /* HomeMapViewController.swift */; };
 		51EA074427E6019700404E2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51EA074327E6019700404E2A /* Assets.xcassets */; };
 		51EA074727E6019700404E2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51EA074527E6019700404E2A /* LaunchScreen.storyboard */; };
 		51EA075227E6019700404E2A /* MapsApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA075127E6019700404E2A /* MapsApplicationTests.swift */; };
@@ -45,7 +45,7 @@
 		51EA073727E6019500404E2A /* MapsApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapsApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51EA073A27E6019500404E2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51EA073C27E6019500404E2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		51EA073E27E6019500404E2A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		51EA073E27E6019500404E2A /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
 		51EA074327E6019700404E2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51EA074627E6019700404E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51EA074827E6019700404E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				51EA077027E6020C00404E2A /* AppStarter */,
-				51EA073E27E6019500404E2A /* ViewController.swift */,
+				51EA073E27E6019500404E2A /* HomeMapViewController.swift */,
 				512010B427E8A588008A47AA /* LocationDetailsViewController.swift */,
 				51DFC31E27E74B8F0035C6B3 /* HomeViewModelProtocol.swift */,
 			);
@@ -418,7 +418,7 @@
 			files = (
 				512010B527E8A588008A47AA /* LocationDetailsViewController.swift in Sources */,
 				51DFC31F27E74B8F0035C6B3 /* HomeViewModelProtocol.swift in Sources */,
-				51EA073F27E6019500404E2A /* ViewController.swift in Sources */,
+				51EA073F27E6019500404E2A /* HomeMapViewController.swift in Sources */,
 				51EA073B27E6019500404E2A /* AppDelegate.swift in Sources */,
 				51EA073D27E6019500404E2A /* SceneDelegate.swift in Sources */,
 			);

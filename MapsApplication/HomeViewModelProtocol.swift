@@ -5,12 +5,12 @@
 //  Created by Norhan Boghdadi on 3/20/22.
 //
 
-import Foundation
+import UIKit
 import GooglePlaces
 
 protocol HomeViewModelProtocol: AnyObject{
     var placesClient: GMSPlacesClient {get}
-    func getPlace(from placeID: String)
+    func getPlace(from placeID: String) -> (String, String)
 }
 
 
@@ -18,9 +18,13 @@ class HomeViewModel: HomeViewModelProtocol {
    
     //MARK: - Setup Places
     var placesClient = GMSPlacesClient.shared()
+    var placeName: String = " "
+    var placeAddress: String = " "
 
-    func getPlace(from placeID: String) {
+
+    func getPlace(from placeID: String) -> (String, String) {
         let placeFields: GMSPlaceField = [.name, .formattedAddress]
+
         placesClient.fetchPlace(fromPlaceID: placeID, placeFields: placeFields, sessionToken: nil)  { (place, error) in
             guard error == nil else {
                 print("Current place error: \(error?.localizedDescription ?? "")")
@@ -32,7 +36,10 @@ class HomeViewModel: HomeViewModelProtocol {
                 return
             }
             
-
+            self.placeName = place.name ?? " "
+            self.placeAddress = place.formattedAddress ?? " "
+            
         }
+        return (placeName, placeAddress)
     }
 }

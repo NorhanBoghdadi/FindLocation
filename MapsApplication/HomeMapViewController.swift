@@ -9,7 +9,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-class ViewController: UIViewController {
+class HomeMapViewController: UIViewController {
 
     private var camera = GMSCameraPosition()
     private var mapView = GMSMapView()
@@ -40,9 +40,11 @@ class ViewController: UIViewController {
 
     }
     //MARK: - Setup Details View
-    private func setupDetailsView() {
+    private func setupDetailsView(addressName: String, addressDet: String) {
         let detailsView = LocationDetailsViewController()
         detailsView.modalPresentationStyle = .overCurrentContext
+        detailsView.locationNameLabel.text = addressName
+        detailsView.addressLabel.text = addressDet
         present(detailsView, animated: true)
     }
     
@@ -53,26 +55,34 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(longPressRecognizer)
     }
     @objc func longPressTap() {
-        setupDetailsView()
+//        setupDetailsView()
     }
 
 }
-
-
-//MARK: - Change Map Location & Marker
-extension ViewController: GMSMapViewDelegate {
-    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
-        setupDetailsView() //Remove later
-        
-        viewModel.getPlace(from: placeID)
+//MARK: - Change Map and Marker Postion function
+extension HomeMapViewController {
+    func chnageLocation(location: CLLocationCoordinate2D) {
         camera = GMSCameraPosition.camera(withLatitude: location.latitude, longitude: location.longitude, zoom: Constants.cameraZoom)
         marker.position = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         
-        print("You tapped at \(location.latitude), \(location.longitude), \(placeID)")
+    }
+}
+ 
+//MARK: - Change Map Location & Marker
+extension HomeMapViewController: GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
+        
+        var placeOutput: (String, String) = ("", "")
+        placeOutput = viewModel.getPlace(from: placeID)
+        
+        chnageLocation(location: location)
+        setupDetailsView(addressName: placeOutput.0, addressDet: placeOutput.1)
+
+        
     }
     
 }
-extension ViewController {
+extension HomeMapViewController {
     struct Constants {
         static let initLatitude = 53.5499242
         static let initLongitude = 9.9839786
