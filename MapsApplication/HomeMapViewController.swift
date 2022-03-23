@@ -11,38 +11,30 @@ import GooglePlaces
 
 class HomeMapViewController: UIViewController {
 
-    private var camera = GMSCameraPosition()
     private var mapView = GMSMapView()
-    private var marker = GMSMarker()
-    private var placesClient = GMSPlacesClient()
     private var viewModel = HomeViewModel()
 
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        setupMap()
+        setupMapView()
         setupLongPressor()
-        
 
     }
     //MARK: - SETUP Map & Marker initial view. 
-    private func setupMap() {
-        camera = GMSCameraPosition.camera(withLatitude: Constants.initLatitude, longitude: Constants.initLongitude, zoom: Constants.cameraZoom)
-        mapView = GMSMapView.map(withFrame: view.frame, camera: camera)
+    private func setupMapView() {
+        mapView = viewModel.setupMapProperties(location: Constants.location, zoom: Constants.cameraZoom, view: view)
         mapView.delegate = self
         view.addSubview(mapView)
-        
-        // Creates a marker in the center of the map.
-        marker.icon = UIImage(named: "MapLocationMarker")
-        marker.position = CLLocationCoordinate2D(latitude: Constants.initLatitude, longitude: Constants.initLongitude)
-        marker.map = mapView
-
     }
+    
     //MARK: - Setup Details View
     private func setupDetailsView(addressName: String, addressDet: String) {
         let detailsView = LocationDetailsViewController()
         detailsView.modalPresentationStyle = .overCurrentContext
+        detailsView.modalTransitionStyle = .crossDissolve
         detailsView.locationNameLabel.text = addressName
         detailsView.addressLabel.text = addressDet
         present(detailsView, animated: true)
@@ -59,14 +51,7 @@ class HomeMapViewController: UIViewController {
     }
 
 }
-//MARK: - Change Map and Marker Postion function
-extension HomeMapViewController {
-    func chnageLocation(location: CLLocationCoordinate2D) {
-        camera = GMSCameraPosition.camera(withLatitude: location.latitude, longitude: location.longitude, zoom: Constants.cameraZoom)
-        marker.position = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-        
-    }
-}
+
  
 //MARK: - Change Map Location & Marker
 extension HomeMapViewController: GMSMapViewDelegate {
@@ -75,7 +60,7 @@ extension HomeMapViewController: GMSMapViewDelegate {
         var placeOutput: (String, String) = ("", "")
         placeOutput = viewModel.getPlace(from: placeID)
         
-        chnageLocation(location: location)
+        viewModel.changeMapLlocation(location: location, zoom: Constants.cameraZoom)
         setupDetailsView(addressName: placeOutput.0, addressDet: placeOutput.1)
 
         
@@ -86,6 +71,7 @@ extension HomeMapViewController {
     struct Constants {
         static let initLatitude = 53.5499242
         static let initLongitude = 9.9839786
+        static let location = CLLocationCoordinate2D(latitude: 53.5499242, longitude: 9.9839786)
         static let cameraZoom: Float = 15.0
         
         static let viewX: CGFloat = 20
