@@ -8,7 +8,7 @@
 import UIKit
 import GooglePlaces
 
-protocol HomeViewModelProtocol: AnyObject{
+protocol HomeViewModelProtocol: AnyObject {
     var placesClient: GMSPlacesClient {get}
     func getPlace(from placeID: String) -> (String, String)
 }

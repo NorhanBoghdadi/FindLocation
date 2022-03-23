@@ -14,7 +14,7 @@ protocol LocationDetailsViewProtocol {
 class LocationDetailsViewController: UIViewController {
 
     
-    private lazy var detView: UIView = {
+    private lazy var detailsView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(named: "BackgroundColor")
@@ -22,7 +22,16 @@ class LocationDetailsViewController: UIViewController {
         return view
     }()
     
-    //Declare first label
+    private lazy var addressLabelsStackView: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [locationNameLabel,
+                                                       addressLabel
+        ])
+        stackview.translatesAutoresizingMaskIntoConstraints = false
+        stackview.axis = .vertical
+        return stackview
+    }()
+    
+    //Declare name label
     lazy var locationNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,18 +55,13 @@ class LocationDetailsViewController: UIViewController {
         return label
     }()
     
-    //Declare close buttons
-    private lazy var closeImageView: UIImageView = {
-        let img = UIImageView()
-        img.translatesAutoresizingMaskIntoConstraints = false
-        img.image = UIImage(named: "CloseIconNormal")
-        img.clipsToBounds = true
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.closeView))
-        tapGesture.numberOfTapsRequired = 1
-        img.isUserInteractionEnabled = true
-        img.addGestureRecognizer(tapGesture)
-        return img
+    //Declare close button
+    private lazy var closeButton: UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setImage(UIImage(named: "CloseIconNormal"), for: .normal)
+        btn.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        return btn
         
     }()
     
@@ -68,60 +72,54 @@ class LocationDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
         setupViews()
     }
+    
     //MARK: - Setup Views
     private func setupViews() {
         view.layer.cornerRadius = Constants.cornerRad
         setupDetailView()
-        
     }
+    
     private func setupDetailView() {
-        view.addSubview(detView)
+        view.addSubview(detailsView)
         
         NSLayoutConstraint.activate([
-            detView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(Constants.bottom)),
-            detView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: Constants.viewHeightMulti),
-            detView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.leftRight),
-            detView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -(Constants.leftRight))
-        ])
-        setupLocationLabel()
-        setupAddressLabel()
-        setupCloseBtn()
-    }
-    
-    private func setupLocationLabel() {
-        detView.addSubview(locationNameLabel)
-        NSLayoutConstraint.activate([
-            locationNameLabel.topAnchor.constraint(equalTo: detView.topAnchor, constant: Constants.upDown),
-            locationNameLabel.leadingAnchor.constraint(equalTo: detView.leadingAnchor),
-            locationNameLabel.trailingAnchor.constraint(equalTo: detView.trailingAnchor),
+            detailsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(Constants.bottom)),
+            detailsView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: Constants.viewHeightMulti),
+            detailsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.leftRight),
+            detailsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -(Constants.leftRight))
         ])
 
+        setupCloseButton()
+        setupLabelsStack()
     }
-    private func setupAddressLabel(){
-        detView.addSubview(addressLabel)
+    
+
+    private func setupLabelsStack() {
+        detailsView.addSubview(addressLabelsStackView)
+        
         NSLayoutConstraint.activate([
-            addressLabel.leadingAnchor.constraint(equalTo: detView.leadingAnchor),
-            addressLabel.trailingAnchor.constraint(equalTo: detView.trailingAnchor),
-            addressLabel.topAnchor.constraint(equalTo: locationNameLabel.bottomAnchor, constant: Constants.labelsDistance),
-            addressLabel.bottomAnchor.constraint(equalTo: detView.bottomAnchor, constant: -Constants.upDown)
+            addressLabelsStackView.topAnchor.constraint(equalTo: detailsView.topAnchor, constant: Constants.upDown),
+            addressLabelsStackView.bottomAnchor.constraint(equalTo: detailsView.bottomAnchor, constant: -Constants.upDown),
+            addressLabelsStackView.leadingAnchor.constraint(equalTo: detailsView.leadingAnchor),
+            addressLabelsStackView.widthAnchor.constraint(equalTo: detailsView.widthAnchor)
         ])
+        
+        
     }
-    private func setupCloseBtn(){
-        detView.addSubview(closeImageView)
+    
+    private func setupCloseButton(){
+        detailsView.addSubview(closeButton)
         NSLayoutConstraint.activate([
-            closeImageView.topAnchor.constraint(equalTo: detView.topAnchor),
-            closeImageView.trailingAnchor.constraint(equalTo: detView.trailingAnchor),
-            closeImageView.heightAnchor.constraint(equalToConstant: Constants.imgSize),
-            closeImageView.widthAnchor.constraint(equalToConstant: Constants.imgSize )
+            closeButton.topAnchor.constraint(equalTo: detailsView.topAnchor),
+            closeButton.trailingAnchor.constraint(equalTo: detailsView.trailingAnchor),
+            closeButton.heightAnchor.constraint(equalToConstant: Constants.imgSize),
+            closeButton.widthAnchor.constraint(equalToConstant: Constants.imgSize )
         
         ])
-
     }
-
-    
-    
 
 }
+
 extension LocationDetailsViewController {
     struct Constants {
         static let bottom: CGFloat = 20
@@ -138,9 +136,7 @@ extension LocationDetailsViewController {
 //MARK: - Protocol Extension
 extension LocationDetailsViewController: LocationDetailsViewProtocol {
     @objc func closeView() {
-        closeImageView.image = UIImage(named: "CloseIconHighlighted")
+        closeButton.setImage(UIImage(named: "CloseIconHighlighted"), for: .normal)
         dismiss(animated: true)
     }
-    
-    
 }
