@@ -17,7 +17,7 @@ class LocationDetailsViewController: UIViewController {
     private lazy var detailsView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "BackgroundColor")
+        view.backgroundColor = .color(for: .BackgroundColor)
         view.layer.cornerRadius = Constants.cornerRad
         return view
     }()
@@ -38,7 +38,7 @@ class LocationDetailsViewController: UIViewController {
         label.textAlignment = .center
         label.text = "Something something"
         label.font = UIFont.preferredFont(forTextStyle: .headline)
-        label.textColor = UIColor(named: "PrimaryTextColor")
+        label.textColor = .color(for: .PrimaryTextColor)
 
         return label
     }()
@@ -51,7 +51,7 @@ class LocationDetailsViewController: UIViewController {
         label.text = "SOMETHING"
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.numberOfLines = 0
-        label.textColor = UIColor(named: "SecondaryTextColor")
+        label.textColor = .color(for: .SecondaryTextColor)
         return label
     }()
     

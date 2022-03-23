@@ -11,6 +11,7 @@
 		512010B527E8A588008A47AA /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512010B427E8A588008A47AA /* LocationDetailsViewController.swift */; };
 		51DFC31F27E74B8F0035C6B3 /* HomeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DFC31E27E74B8F0035C6B3 /* HomeViewModelProtocol.swift */; };
 		51E6FEF427EB71EB0012C4FC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E6FEF327EB71EB0012C4FC /* HomeViewModel.swift */; };
+		51E6FF0927EB930B0012C4FC /* MapsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E6FF0827EB930B0012C4FC /* MapsColors.swift */; };
 		51EA073B27E6019500404E2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA073A27E6019500404E2A /* AppDelegate.swift */; };
 		51EA073D27E6019500404E2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA073C27E6019500404E2A /* SceneDelegate.swift */; };
 		51EA073F27E6019500404E2A /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA073E27E6019500404E2A /* HomeMapViewController.swift */; };
@@ -44,6 +45,7 @@
 		512010B427E8A588008A47AA /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		51DFC31E27E74B8F0035C6B3 /* HomeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelProtocol.swift; sourceTree = "<group>"; };
 		51E6FEF327EB71EB0012C4FC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		51E6FF0827EB930B0012C4FC /* MapsColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsColors.swift; sourceTree = "<group>"; };
 		51EA073727E6019500404E2A /* MapsApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapsApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51EA073A27E6019500404E2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51EA073C27E6019500404E2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		51E6FF0E27EB949E0012C4FC /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				512010B427E8A588008A47AA /* LocationDetailsViewController.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		51E6FF0F27EB94B50012C4FC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				51EA073E27E6019500404E2A /* HomeMapViewController.swift */,
+				51DFC31E27E74B8F0035C6B3 /* HomeViewModelProtocol.swift */,
+				51E6FEF327EB71EB0012C4FC /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		51EA072E27E6019500404E2A = {
 			isa = PBXGroup;
 			children = (
@@ -131,10 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				51EA077027E6020C00404E2A /* AppStarter */,
-				51EA073E27E6019500404E2A /* HomeMapViewController.swift */,
-				512010B427E8A588008A47AA /* LocationDetailsViewController.swift */,
-				51DFC31E27E74B8F0035C6B3 /* HomeViewModelProtocol.swift */,
-				51E6FEF327EB71EB0012C4FC /* HomeViewModel.swift */,
+				51E6FF0F27EB94B50012C4FC /* Home */,
+				51E6FF0E27EB949E0012C4FC /* Details */,
 			);
 			path = MapsApplication;
 			sourceTree = "<group>";
@@ -163,6 +181,7 @@
 				51EA073A27E6019500404E2A /* AppDelegate.swift */,
 				51EA073C27E6019500404E2A /* SceneDelegate.swift */,
 				51EA074327E6019700404E2A /* Assets.xcassets */,
+				51E6FF0827EB930B0012C4FC /* MapsColors.swift */,
 				51EA074527E6019700404E2A /* LaunchScreen.storyboard */,
 				51EA074827E6019700404E2A /* Info.plist */,
 			);
@@ -419,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51E6FF0927EB930B0012C4FC /* MapsColors.swift in Sources */,
 				512010B527E8A588008A47AA /* LocationDetailsViewController.swift in Sources */,
 				51E6FEF427EB71EB0012C4FC /* HomeViewModel.swift in Sources */,
 				51DFC31F27E74B8F0035C6B3 /* HomeViewModelProtocol.swift in Sources */,
