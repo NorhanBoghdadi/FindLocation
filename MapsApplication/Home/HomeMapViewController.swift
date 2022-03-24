@@ -12,64 +12,49 @@ class HomeMapViewController: UIViewController {
 
     private var mapView = GMSMapView()
     private var viewModel = HomeViewModel()
+    
+    private lazy var locationDetialsView: LocationDetailsViewController = {
+        let detailsView = LocationDetailsViewController()
+        detailsView.modalPresentationStyle = .overCurrentContext
+        detailsView.modalTransitionStyle = .crossDissolve
+        return detailsView
+    }()
 
-        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         setupMapView()
-        setupLongPressor()
-
     }
+    
     //MARK: - SETUP Map & Marker initial view. 
     private func setupMapView() {
-        mapView = viewModel.setupMapProperties(location: Constants.location, zoom: Constants.cameraZoom, view: view)
+        mapView = viewModel.setupMapProperties(frame: view.frame)
         mapView.delegate = self
         view.addSubview(mapView)
     }
     
     //MARK: - Setup Details View
-    private func setupDetailsView(addressName: String, addressDetails: String) {
-        let detailsView = LocationDetailsViewController()
-        detailsView.modalPresentationStyle = .overCurrentContext
-        detailsView.modalTransitionStyle = .crossDissolve
-        detailsView.locationNameLabel.text = addressName
-        detailsView.addressLabel.text = addressDetails
-        present(detailsView, animated: true)
+    private func presentDetailsWith(_ placeId: String) {
+        locationDetialsView.setData(placeId)
+        present(locationDetialsView, animated: true)
     }
-    
-    //MARK: - Long press setup
-    private func setupLongPressor() {
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressTap))
-        longPressRecognizer.minimumPressDuration = 0.5
-        view.addGestureRecognizer(longPressRecognizer)
-    }
-    @objc func longPressTap() {
-//        setupDetailsView()
-    }
-
 }
 
  
 //MARK: - Change Map Location & Marker
 extension HomeMapViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
-        
-        var placeOutput: (String, String) = ("", "")
-        placeOutput = viewModel.getPlace(from: placeID)
-        
-        viewModel.changeMapLlocation(location: location, zoom: Constants.cameraZoom)
-        setupDetailsView(addressName: placeOutput.0, addressDetails: placeOutput.1)
-
-        
+        viewModel.changeMap(location: location)
+        presentDetailsWith(placeID)
     }
     
+    func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
+        viewModel.changeMap(location: coordinate)
+        //TODO: implement getting info from coordinate aka geocoding
+    }
 }
 extension HomeMapViewController {
     struct Constants {
-        static let location = CLLocationCoordinate2D(latitude: 53.5499242, longitude: 9.9839786)
-        static let cameraZoom: Float = 15.0
         static let viewX: CGFloat = 20
         static let viewY: CGFloat = 120
         static let width: CGFloat = 40

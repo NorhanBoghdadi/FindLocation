@@ -7,13 +7,14 @@
 
 import UIKit
 
+// View Model
+// 3 states : Loading/ loaded with data / error 
+
 protocol LocationDetailsViewProtocol {
     func closeView()
 }
 
 class LocationDetailsViewController: UIViewController {
-
-    
     private lazy var detailsView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +33,7 @@ class LocationDetailsViewController: UIViewController {
     }()
     
     //Declare name label
-    lazy var locationNameLabel: UILabel = {
+    private lazy var locationNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
@@ -44,7 +45,7 @@ class LocationDetailsViewController: UIViewController {
     }()
     
     //Declare details label
-    lazy var addressLabel: UILabel = {
+    private lazy var addressLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
@@ -68,8 +69,6 @@ class LocationDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         setupViews()
     }
     
@@ -120,6 +119,20 @@ class LocationDetailsViewController: UIViewController {
 
 }
 
+extension LocationDetailsViewController {
+    func setData(_ placeId: String) {
+        closeButton.setImage(UIImage(named: "CloseIconNormal"), for: .normal)
+        PlacesInformationRepo().getPlace(from: placeId) { results in
+            switch results {
+            case .success(let place):
+                self.locationNameLabel.text = place.name
+                self.addressLabel.text = place.details
+            case .failure( _):
+                print(PlacesServiceError.placeError)
+            }
+        }
+    }
+}
 extension LocationDetailsViewController {
     struct Constants {
         static let bottom: CGFloat = 20

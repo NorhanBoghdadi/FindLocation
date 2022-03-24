@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		495C6566EA56E7D631A8D20C /* Pods_MapsApplicationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C30282DBF0634AD9A9B6384 /* Pods_MapsApplicationTests.framework */; };
 		512010B527E8A588008A47AA /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512010B427E8A588008A47AA /* LocationDetailsViewController.swift */; };
-		51DFC31F27E74B8F0035C6B3 /* HomeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DFC31E27E74B8F0035C6B3 /* HomeViewModelProtocol.swift */; };
+		518C0B3D27EC78E8009EE1C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 518C0B3C27EC78E8009EE1C9 /* Assets.xcassets */; };
+		518C0B4227EC7921009EE1C9 /* MapsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C0B4127EC7921009EE1C9 /* MapsColors.swift */; };
+		51DAA78627EC7D520009A78E /* PlaceInformationRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DAA78527EC7D520009A78E /* PlaceInformationRepo.swift */; };
 		51E6FEF427EB71EB0012C4FC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E6FEF327EB71EB0012C4FC /* HomeViewModel.swift */; };
-		51E6FF0927EB930B0012C4FC /* MapsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E6FF0827EB930B0012C4FC /* MapsColors.swift */; };
 		51EA073B27E6019500404E2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA073A27E6019500404E2A /* AppDelegate.swift */; };
 		51EA073D27E6019500404E2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA073C27E6019500404E2A /* SceneDelegate.swift */; };
 		51EA073F27E6019500404E2A /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA073E27E6019500404E2A /* HomeMapViewController.swift */; };
-		51EA074427E6019700404E2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51EA074327E6019700404E2A /* Assets.xcassets */; };
 		51EA074727E6019700404E2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51EA074527E6019700404E2A /* LaunchScreen.storyboard */; };
 		51EA075227E6019700404E2A /* MapsApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA075127E6019700404E2A /* MapsApplicationTests.swift */; };
 		51EA075D27E6019700404E2A /* MapsApplicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EA075C27E6019700404E2A /* MapsApplicationUITests.swift */; };
@@ -43,14 +43,14 @@
 /* Begin PBXFileReference section */
 		1DC244614825DE33224E98A0 /* Pods_MapsApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapsApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		512010B427E8A588008A47AA /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
-		51DFC31E27E74B8F0035C6B3 /* HomeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelProtocol.swift; sourceTree = "<group>"; };
+		518C0B3C27EC78E8009EE1C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		518C0B4127EC7921009EE1C9 /* MapsColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsColors.swift; sourceTree = "<group>"; };
+		51DAA78527EC7D520009A78E /* PlaceInformationRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaceInformationRepo.swift; path = "../../../../Downloads/MapsApplication 2/Details/PlaceInformationRepo.swift"; sourceTree = "<group>"; };
 		51E6FEF327EB71EB0012C4FC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		51E6FF0827EB930B0012C4FC /* MapsColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsColors.swift; sourceTree = "<group>"; };
 		51EA073727E6019500404E2A /* MapsApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapsApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51EA073A27E6019500404E2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51EA073C27E6019500404E2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		51EA073E27E6019500404E2A /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
-		51EA074327E6019700404E2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51EA074627E6019700404E2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51EA074827E6019700404E2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51EA074D27E6019700404E2A /* MapsApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapsApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,10 +107,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		518C0B4927EC7B60009EE1C9 /* Theme & Styling */ = {
+			isa = PBXGroup;
+			children = (
+				518C0B4127EC7921009EE1C9 /* MapsColors.swift */,
+				518C0B3C27EC78E8009EE1C9 /* Assets.xcassets */,
+			);
+			path = "Theme & Styling";
+			sourceTree = "<group>";
+		};
 		51E6FF0E27EB949E0012C4FC /* Details */ = {
 			isa = PBXGroup;
 			children = (
 				512010B427E8A588008A47AA /* LocationDetailsViewController.swift */,
+				51DAA78527EC7D520009A78E /* PlaceInformationRepo.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -119,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				51EA073E27E6019500404E2A /* HomeMapViewController.swift */,
-				51DFC31E27E74B8F0035C6B3 /* HomeViewModelProtocol.swift */,
 				51E6FEF327EB71EB0012C4FC /* HomeViewModel.swift */,
 			);
 			path = Home;
@@ -150,6 +159,7 @@
 		51EA073927E6019500404E2A /* MapsApplication */ = {
 			isa = PBXGroup;
 			children = (
+				518C0B4927EC7B60009EE1C9 /* Theme & Styling */,
 				51EA077027E6020C00404E2A /* AppStarter */,
 				51E6FF0F27EB94B50012C4FC /* Home */,
 				51E6FF0E27EB949E0012C4FC /* Details */,
@@ -180,8 +190,6 @@
 			children = (
 				51EA073A27E6019500404E2A /* AppDelegate.swift */,
 				51EA073C27E6019500404E2A /* SceneDelegate.swift */,
-				51EA074327E6019700404E2A /* Assets.xcassets */,
-				51E6FF0827EB930B0012C4FC /* MapsColors.swift */,
 				51EA074527E6019700404E2A /* LaunchScreen.storyboard */,
 				51EA074827E6019700404E2A /* Info.plist */,
 			);
@@ -309,8 +317,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				518C0B3D27EC78E8009EE1C9 /* Assets.xcassets in Resources */,
 				51EA074727E6019700404E2A /* LaunchScreen.storyboard in Resources */,
-				51EA074427E6019700404E2A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,12 +446,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51E6FF0927EB930B0012C4FC /* MapsColors.swift in Sources */,
+				518C0B4227EC7921009EE1C9 /* MapsColors.swift in Sources */,
 				512010B527E8A588008A47AA /* LocationDetailsViewController.swift in Sources */,
 				51E6FEF427EB71EB0012C4FC /* HomeViewModel.swift in Sources */,
-				51DFC31F27E74B8F0035C6B3 /* HomeViewModelProtocol.swift in Sources */,
 				51EA073F27E6019500404E2A /* HomeMapViewController.swift in Sources */,
 				51EA073B27E6019500404E2A /* AppDelegate.swift in Sources */,
+				51DAA78627EC7D520009A78E /* PlaceInformationRepo.swift in Sources */,
 				51EA073D27E6019500404E2A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
