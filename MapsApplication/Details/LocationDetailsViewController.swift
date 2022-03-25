@@ -7,13 +7,8 @@
 
 import UIKit
 
-// View Model
-// 3 states : Loading/ loaded with data / error 
-
-
 class LocationDetailsViewController: UIViewController {
     private var viewModel: LocationDetailsViewModel?
-    private var placeInfo: Place?
     
     private lazy var detailsView: UIView = {
         let view = UIView()
@@ -70,7 +65,7 @@ class LocationDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        viewModel = LocationDetailsViewModel(statePresenter: self, place: placeInfo ?? Place(name: "", details: ""))
+        viewModel = LocationDetailsViewModel(statePresenter: self)
     }
     
     //MARK: - Setup Views
@@ -138,14 +133,14 @@ extension LocationDetailsViewController: StatePresenter {
         switch state {
         case .loading:
             print("loading")
-        case .loaded:
-            placeInfo = viewModel?.place
-            locationNameLabel.text = placeInfo?.name
-            addressLabel.text = placeInfo?.details
+        case .loaded(with: let place):
+            locationNameLabel.text = place.name
+            addressLabel.text = place.details
+            print("Loaded")
         case .error(let error):
             show(error: error)
         case .initial:
-            print("initial")
+            print("init")
         }
     }
     

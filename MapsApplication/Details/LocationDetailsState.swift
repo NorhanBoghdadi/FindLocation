@@ -10,7 +10,7 @@ import Foundation
 enum State {
     case initial
     case loading
-    case loaded
+    case loaded(with: Place)
     case error(Error)
 }
 

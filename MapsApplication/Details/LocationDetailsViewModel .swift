@@ -9,11 +9,9 @@ import Foundation
 
 class LocationDetailsViewModel {
     private var statePresenter: StatePresenter?
-    var place:  Place
     
-    init (statePresenter: StatePresenter, place: Place) {
+    init (statePresenter: StatePresenter) {
         self.statePresenter = statePresenter
-        self.place = place
     }
     
     func loadData(_ placeId: String) {
@@ -34,7 +32,6 @@ class LocationDetailsViewModel {
         }
     }
     func setData(place: Place) {
-        self.place = place
-        statePresenter?.render(state: .loaded)
+        statePresenter?.render(state: .loaded(with: place))
     }
 }
