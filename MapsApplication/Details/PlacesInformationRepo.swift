@@ -9,34 +9,58 @@ import Foundation
 import GooglePlaces
 
 
-struct PlacesInformationRepo {
-    var placesClient = GMSPlacesClient.shared()
+class PlacesInformationRepo {
+    private var placesClient = GMSPlacesClient.shared()
+    private var cache = [String: Place]()
     
     func getPlace(from placeID: String, completion: ((Result<Place, Error>) -> Void)?) {
         let placeFields: GMSPlaceField = [.name, .formattedAddress]
 
-        placesClient.fetchPlace(
-            fromPlaceID: placeID,
-            placeFields: placeFields,
-            sessionToken: nil
-        )  { (place, error) in
-            guard error == nil else {
-                if let desc = error?.localizedDescription {
-                    completion?(.failure(PlacesServiceError.with(description: desc)))
-                } else {
-                    completion?(.failure(PlacesServiceError.placeError))
+        if loadPlaceFromCache(placeID, completion: completion) != nil {
+            return
+        } else {
+            placesClient.fetchPlace(
+                fromPlaceID: placeID,
+                placeFields: placeFields,
+                sessionToken: nil
+            )  { (place, error) in
+                guard error == nil else {
+                    if let desc = error?.localizedDescription {
+                        completion?(.failure(PlacesServiceError.with(description: desc)))
+                    } else {
+                        completion?(.failure(PlacesServiceError.placeError))
+                    }
+                    return
                 }
-                return
-            }
 
-            guard let placeName = place?.name, let details = place?.formattedAddress else {
-                completion?(.failure(PlacesServiceError.noFormat))
-                return
+                guard let placeName = place?.name, let details = place?.formattedAddress else {
+                    completion?(.failure(PlacesServiceError.noFormat))
+                    return
+                }
+                
+                completion?(.success(.init(name: placeName, details: details)))
+                self.storePlaceToCache(placeID, Place(name: placeName, details: details) )
             }
-            
-            completion?(.success(.init(name: placeName, details: details)))
         }
+        
     }
+    
+    
+    fileprivate func loadPlaceFromCache(_ placeID: String) -> Place?{
+        cache[placeID]
+    }
+    fileprivate func storePlaceToCache(_ placeID: String, _ place: Place) {
+        cache[placeID] = place
+    }
+    private func loadPlaceFromCache(_ placeID: String, completion: ((Result<Place, Error>) -> Void)?) -> Place? {
+        guard let place = loadPlaceFromCache(placeID) else {
+            completion?(.failure(PlacesServiceError.noFormat))
+            return nil
+        }
+        completion?(.success(place))
+        return place
+    }
+
 }
 
 enum PlacesServiceError: Error {
