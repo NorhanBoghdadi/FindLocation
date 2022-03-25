@@ -8,8 +8,9 @@
 import Foundation
 
 enum State {
+    case initial
     case loading
-    case loadedWithData
+    case loaded
     case error(Error)
 }
 

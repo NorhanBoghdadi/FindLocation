@@ -12,6 +12,9 @@ import UIKit
 
 
 class LocationDetailsViewController: UIViewController {
+    private var viewModel: LocationDetailsViewModel?
+    private var placeInfo: Place?
+    
     private lazy var detailsView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -66,7 +69,8 @@ class LocationDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupViews()
+        setupViews()
+        viewModel = LocationDetailsViewModel(statePresenter: self, place: placeInfo ?? Place(name: "", details: ""))
     }
     
     //MARK: - Setup Views
@@ -118,15 +122,8 @@ class LocationDetailsViewController: UIViewController {
 extension LocationDetailsViewController {
     func setData(_ placeId: String) {
         closeButton.setImage(UIImage(named: "CloseIconNormal"), for: .normal)
-        PlacesInformationRepo().getPlace(from: placeId) { results in
-            switch results {
-            case .success(let place):
-                self.locationNameLabel.text = place.name
-                self.addressLabel.text = place.details
-            case .failure( _):
-                print(PlacesServiceError.placeError)
-            }
-        }
+        viewModel?.loadData(placeId)
+        
     }
     
     @objc func closeView() {
@@ -140,16 +137,23 @@ extension LocationDetailsViewController: StatePresenter {
     func render(state: State) {
         switch state {
         case .loading:
-            // view for loading
-        case .loadedWithData:
-            // data loaded
+            print("loading")
+        case .loaded:
+            placeInfo = viewModel?.place
+            locationNameLabel.text = placeInfo?.name
+            addressLabel.text = placeInfo?.details
         case .error(let error):
             show(error: error)
+        case .initial:
+            print("initial")
         }
     }
     
     func show(error: Error) {
-        // create view for error state
+        let alertController = UIAlertController(title: "Error",
+                                                message: error.localizedDescription,
+                                                preferredStyle: .alert)
+        present(alertController, animated: true, completion: nil)
     }
     
     

@@ -9,24 +9,32 @@ import Foundation
 
 class LocationDetailsViewModel {
     private var statePresenter: StatePresenter?
+    var place:  Place
     
-    init (statePresenter: StatePresenter) {
+    init (statePresenter: StatePresenter, place: Place) {
         self.statePresenter = statePresenter
+        self.place = place
     }
     
-    func loadData() {
+    func loadData(_ placeId: String) {
         statePresenter?.render(state: .loading)
+        PlacesInformationRepo().getPlace(from: placeId) {[weak self] result in
+            guard let self = self else { return }
+            self.handleDataLoading(result: result)
+        }
+
     }
     
     func handleDataLoading(result: Result<Place, Error>) {
         switch result {
         case .success(let place):
-            //set data
+            setData(place: place)
         case .failure(let error):
             statePresenter?.render(state: .error(error))
         }
     }
-    func dataLoader() {
-        statePresenter?.render(state: .loadedWithData)
+    func setData(place: Place) {
+        self.place = place
+        statePresenter?.render(state: .loaded)
     }
 }
