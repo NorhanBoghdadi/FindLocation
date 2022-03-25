@@ -38,7 +38,7 @@ class HomeViewModel: HomeViewModelProtocol {
         marker.position = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
     }
     
-    enum Constants {
+    struct Constants {
         static let location = CLLocationCoordinate2D(latitude: 53.5499242, longitude: 9.9839786)
         static let cameraZoom: Float = 15.0
         static let iconName = "MapLocationMarker"

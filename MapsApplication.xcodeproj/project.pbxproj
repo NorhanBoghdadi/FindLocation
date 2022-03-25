@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		495C6566EA56E7D631A8D20C /* Pods_MapsApplicationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C30282DBF0634AD9A9B6384 /* Pods_MapsApplicationTests.framework */; };
+		5113D7B927EE55E5006992C3 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5113D7B827EE55E5006992C3 /* HomeMapView.swift */; };
 		512010B527E8A588008A47AA /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512010B427E8A588008A47AA /* LocationDetailsViewController.swift */; };
 		518C0B3D27EC78E8009EE1C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 518C0B3C27EC78E8009EE1C9 /* Assets.xcassets */; };
 		518C0B4227EC7921009EE1C9 /* MapsColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C0B4127EC7921009EE1C9 /* MapsColors.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		1DC244614825DE33224E98A0 /* Pods_MapsApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapsApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5113D7B827EE55E5006992C3 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
 		512010B427E8A588008A47AA /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		518C0B3C27EC78E8009EE1C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		518C0B4127EC7921009EE1C9 /* MapsColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsColors.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				51EA073E27E6019500404E2A /* HomeMapViewController.swift */,
 				51E6FEF327EB71EB0012C4FC /* HomeViewModel.swift */,
+				5113D7B827EE55E5006992C3 /* HomeMapView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				512010B527E8A588008A47AA /* LocationDetailsViewController.swift in Sources */,
 				51E6FEF427EB71EB0012C4FC /* HomeViewModel.swift in Sources */,
 				51EA073F27E6019500404E2A /* HomeMapViewController.swift in Sources */,
+				5113D7B927EE55E5006992C3 /* HomeMapView.swift in Sources */,
 				51DAA79627EC8BBA0009A78E /* LocationDetailsState.swift in Sources */,
 				51EA073B27E6019500404E2A /* AppDelegate.swift in Sources */,
 				51EA073D27E6019500404E2A /* SceneDelegate.swift in Sources */,
