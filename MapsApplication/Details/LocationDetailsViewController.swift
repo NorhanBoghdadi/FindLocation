@@ -10,9 +10,6 @@ import UIKit
 // View Model
 // 3 states : Loading/ loaded with data / error 
 
-protocol LocationDetailsViewProtocol {
-    func closeView()
-}
 
 class LocationDetailsViewController: UIViewController {
     private lazy var detailsView: UIView = {
@@ -69,7 +66,7 @@ class LocationDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+//        setupViews()
     }
     
     //MARK: - Setup Views
@@ -103,7 +100,6 @@ class LocationDetailsViewController: UIViewController {
             addressLabelsStackView.widthAnchor.constraint(equalTo: detailsView.widthAnchor)
         ])
         
-        
     }
     
     private func setupCloseButton(){
@@ -132,6 +128,31 @@ extension LocationDetailsViewController {
             }
         }
     }
+    
+    @objc func closeView() {
+        closeButton.setImage(UIImage(named: "CloseIconHighlighted"), for: .normal)
+        dismiss(animated: true)
+    }
+
+}
+
+extension LocationDetailsViewController: StatePresenter {
+    func render(state: State) {
+        switch state {
+        case .loading:
+            // view for loading
+        case .loadedWithData:
+            // data loaded
+        case .error(let error):
+            show(error: error)
+        }
+    }
+    
+    func show(error: Error) {
+        // create view for error state
+    }
+    
+    
 }
 extension LocationDetailsViewController {
     struct Constants {
@@ -143,13 +164,5 @@ extension LocationDetailsViewController {
         static let labelsDistance: CGFloat = 2
         static let cornerRad: CGFloat = 20
         
-    }
-}
-
-//MARK: - Protocol Extension
-extension LocationDetailsViewController: LocationDetailsViewProtocol {
-    @objc func closeView() {
-        closeButton.setImage(UIImage(named: "CloseIconHighlighted"), for: .normal)
-        dismiss(animated: true)
     }
 }
