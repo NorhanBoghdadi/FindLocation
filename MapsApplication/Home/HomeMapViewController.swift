@@ -36,10 +36,12 @@ class HomeMapViewController: UIViewController {
         view.addSubview(homeViewMap)
     }
     
+
+}
+extension HomeMapViewController: TapHanler {
     //MARK: - Setup Details View
     func presentDetailsWith(_ placeId: String) {
         locationDetialsView.setData(placeId)
         present(locationDetialsView, animated: true)
     }
 }
-
