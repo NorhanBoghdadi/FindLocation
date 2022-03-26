@@ -54,7 +54,7 @@ class PlacesInformationRepo {
     }
     private func loadPlaceFromCache(_ placeID: String, completion: ((Result<Place, Error>) -> Void)?) -> Place? {
         guard let place = loadPlaceFromCache(placeID) else {
-            completion?(.failure(PlacesServiceError.noFormat))
+            completion?(.failure(PlacesServiceError.notFound))
             return nil
         }
         completion?(.success(place))
@@ -67,6 +67,7 @@ enum PlacesServiceError: Error {
     case with(description: String)
     case noFormat
     case placeError
+    case notFound
 }
 
 // TODO: Add localized description

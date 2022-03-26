@@ -8,14 +8,14 @@
 import UIKit
 import GoogleMaps
 
-protocol TapHanler {
-    func presentDetailsWith(_ placeId: String)
+protocol MapViewDelegate: AnyObject {
+    func didSelect(_ placeId: String)
 }
 class HomeMapView: UIView {
     
     private var mapView = GMSMapView()
     private var viewModel = HomeViewModel()
-    private var tapHandler: TapHanler?
+    weak var delegate: MapViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,7 +35,7 @@ class HomeMapView: UIView {
 extension HomeMapView: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapPOIWithPlaceID placeID: String, name: String, location: CLLocationCoordinate2D) {
         viewModel.changeMap(location: location)
-        tapHandler?.presentDetailsWith(placeID)
+        delegate?.didSelect(placeID)
     }
     
     func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {

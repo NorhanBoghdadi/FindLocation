@@ -66,6 +66,7 @@ class LocationDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         viewModel = LocationDetailsViewModel(statePresenter: self)
+        view.backgroundColor = .clear
     }
     
     //MARK: - Setup Views
@@ -143,7 +144,7 @@ extension LocationDetailsViewController: StatePresenter {
             print("init")
         }
     }
-    
+    //TODO : Error & loading views
     func show(error: Error) {
         let alertController = UIAlertController(title: "Error",
                                                 message: error.localizedDescription,
