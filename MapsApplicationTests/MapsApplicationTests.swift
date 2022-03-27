@@ -11,13 +11,16 @@ import XCTest
 class MapsApplicationTests: XCTestCase {
 
     // Get place class Test
-    var sut = PlacesInformationRepo().getPlace(from: "ChIJP9-RmA-PsUcRzaexTVBsidM") { results in
-        switch results {
-        case .success(let place):
-            XCTAssertEqual(place.name, "THE MADISON Hotel Hamburg")
-        case .failure(let error):
-            print("Error")
+    func testGetPlace() {
+        var sut = PlacesInformationRepo().getPlace(from: "ChIJP9-RmA-PsUcRzaexTVBsidM") { results in
+            switch results {
+            case .success(let place):
+                XCTAssertEqual(place.name, "THE MADISON Hotel Hamburg")
+            case .failure(let _):
+                print("Error")
+            }
         }
     }
+   
 
 }
