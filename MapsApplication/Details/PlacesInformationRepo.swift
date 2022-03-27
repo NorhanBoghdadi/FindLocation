@@ -11,12 +11,12 @@ import GooglePlaces
 
 class PlacesInformationRepo {
     private var placesClient = GMSPlacesClient.shared()
-    private var cache = [String: Place]()
+    private var cache = CacheRepo()
     
     func getPlace(from placeID: String, completion: ((Result<Place, Error>) -> Void)?) {
         let placeFields: GMSPlaceField = [.name, .formattedAddress]
 
-        if loadPlaceFromCache(placeID, completion: completion) != nil {
+        if cache.loadPlaceFromCache(placeID, completion: completion) != nil {
             return
         } else {
             placesClient.fetchPlace(
@@ -39,26 +39,10 @@ class PlacesInformationRepo {
                 }
                 
                 completion?(.success(.init(name: placeName, details: details)))
-                self.storePlaceToCache(placeID, Place(name: placeName, details: details) )
+                self.cache.storePlaceToCache(placeID, Place(name: placeName, details: details) )
             }
         }
         
-    }
-    
-    
-    fileprivate func loadPlaceFromCache(_ placeID: String) -> Place?{
-        cache[placeID]
-    }
-    fileprivate func storePlaceToCache(_ placeID: String, _ place: Place) {
-        cache[placeID] = place
-    }
-    private func loadPlaceFromCache(_ placeID: String, completion: ((Result<Place, Error>) -> Void)?) -> Place? {
-        guard let place = loadPlaceFromCache(placeID) else {
-            completion?(.failure(PlacesServiceError.notFound))
-            return nil
-        }
-        completion?(.success(place))
-        return place
     }
 
 }
@@ -70,7 +54,6 @@ enum PlacesServiceError: Error {
     case notFound
 }
 
-// TODO: Add localized description
 
 struct Place {
     var name: String

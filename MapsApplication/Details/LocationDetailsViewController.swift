@@ -27,10 +27,8 @@ class LocationDetailsViewController: UIViewController {
         return stackview
     }()
     
-    //Declare name label
     private lazy var locationNameLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.text = "Something something"
         label.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -39,10 +37,8 @@ class LocationDetailsViewController: UIViewController {
         return label
     }()
     
-    //Declare details label
     private lazy var addressLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.text = "SOMETHING"
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
@@ -51,16 +47,18 @@ class LocationDetailsViewController: UIViewController {
         return label
     }()
     
-    //Declare close button
+    private lazy var loadingView: UIActivityIndicatorView = {
+        let loading = UIActivityIndicatorView()
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        return loading
+    }()
     private lazy var closeButton: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setImage(UIImage(named: "CloseIconNormal"), for: .normal)
         btn.addTarget(self, action: #selector(closeView), for: .touchUpInside)
         return btn
-        
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +73,18 @@ class LocationDetailsViewController: UIViewController {
         setupDetailView()
     }
     
+    private func setupLoadingView() {
+        detailsView.addSubview(loadingView)
+        
+        NSLayoutConstraint.activate([
+            loadingView.topAnchor.constraint(equalTo: detailsView.topAnchor, constant: Constants.upDown),
+            loadingView.bottomAnchor.constraint(equalTo: detailsView.bottomAnchor, constant: -Constants.upDown),
+            loadingView.leadingAnchor.constraint(equalTo: detailsView.leadingAnchor, constant: Constants.margin),
+            loadingView.trailingAnchor.constraint(equalTo: detailsView.trailingAnchor,constant: Constants.margin)
+        ])
+
+    }
+    
     private func setupDetailView() {
         view.addSubview(detailsView)
         
@@ -87,8 +97,8 @@ class LocationDetailsViewController: UIViewController {
 
         setupCloseButton()
         setupLabelsStack()
+        setupLoadingView()
     }
-    
 
     private func setupLabelsStack() {
         detailsView.addSubview(addressLabelsStackView)
@@ -96,8 +106,8 @@ class LocationDetailsViewController: UIViewController {
         NSLayoutConstraint.activate([
             addressLabelsStackView.topAnchor.constraint(equalTo: detailsView.topAnchor, constant: Constants.upDown),
             addressLabelsStackView.bottomAnchor.constraint(equalTo: detailsView.bottomAnchor, constant: -Constants.upDown),
-            addressLabelsStackView.leadingAnchor.constraint(equalTo: detailsView.leadingAnchor),
-            addressLabelsStackView.widthAnchor.constraint(equalTo: detailsView.widthAnchor)
+            addressLabelsStackView.leadingAnchor.constraint(equalTo: detailsView.leadingAnchor, constant: Constants.margin),
+            addressLabelsStackView.trailingAnchor.constraint(equalTo: detailsView.trailingAnchor,constant: Constants.margin)
         ])
         
     }
@@ -112,21 +122,18 @@ class LocationDetailsViewController: UIViewController {
         
         ])
     }
-
 }
 
 extension LocationDetailsViewController {
     func setData(_ placeId: String) {
         closeButton.setImage(UIImage(named: "CloseIconNormal"), for: .normal)
         viewModel?.loadData(placeId)
-        
     }
     
     @objc func closeView() {
         closeButton.setImage(UIImage(named: "CloseIconHighlighted"), for: .normal)
         dismiss(animated: true)
     }
-
 }
 
 extension LocationDetailsViewController: StatePresenter {
@@ -134,9 +141,13 @@ extension LocationDetailsViewController: StatePresenter {
         switch state {
         case .loading:
             print("loading")
+            addressLabelsStackView.isHidden = true
+            loadingView.isHidden = false
         case .loaded(with: let place):
             locationNameLabel.text = place.name
             addressLabel.text = place.details
+            addressLabelsStackView.isHidden = false
+            loadingView.isHidden = true
             print("Loaded")
         case .error(let error):
             show(error: error)
@@ -151,8 +162,6 @@ extension LocationDetailsViewController: StatePresenter {
                                                 preferredStyle: .alert)
         present(alertController, animated: true, completion: nil)
     }
-    
-    
 }
 extension LocationDetailsViewController {
     struct Constants {
@@ -163,6 +172,7 @@ extension LocationDetailsViewController {
         static let viewHeightMulti: CGFloat = 0.15
         static let labelsDistance: CGFloat = 2
         static let cornerRad: CGFloat = 20
+        static let margin: CGFloat = 8
         
     }
 }

@@ -14,7 +14,7 @@ protocol MapViewDelegate: AnyObject {
 class HomeMapView: UIView {
     
     private var mapView = GMSMapView()
-    private var viewModel = HomeViewModel()
+    private var viewModel = MapViewModel()
     weak var delegate: MapViewDelegate?
     
     override init(frame: CGRect) {

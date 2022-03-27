@@ -8,12 +8,12 @@
 import Foundation
 import GoogleMaps
 
-protocol HomeViewModelProtocol {
+protocol MapViewModelProtocol {
     func setupMapProperties(frame: CGRect) -> GMSMapView
     func changeMap(location: CLLocationCoordinate2D)
 }
 
-class HomeViewModel: HomeViewModelProtocol {
+class MapViewModel: MapViewModelProtocol {
     private var camera = GMSCameraPosition()
     private var marker = GMSMarker()
     private var mapView = GMSMapView()

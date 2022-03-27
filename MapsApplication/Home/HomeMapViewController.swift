@@ -9,7 +9,7 @@ import UIKit
 
 class HomeMapViewController: UIViewController {
 
-    private var viewModel = HomeViewModel()
+    private var viewModel = MapViewModel()
     
     private lazy var homeViewMap: HomeMapView = {
         let homeMap = HomeMapView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
@@ -20,8 +20,7 @@ class HomeMapViewController: UIViewController {
     
     private lazy var locationDetialsView: LocationDetailsViewController = {
         let detailsView = LocationDetailsViewController()
-        detailsView.modalPresentationStyle = .overFullScreen
-//        detailsView.modalTransitionStyle = .crossDissolve
+        detailsView.modalPresentationStyle = .overCurrentContext
         return detailsView
     }()
 
